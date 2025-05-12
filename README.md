@@ -30,7 +30,6 @@ Củng cố kỹ năng lập trình và tư duy giải quyết vấn đề. Hi�
 ## 2. Nội dung
 ### 2.1. Các thuật toán tìm kiếm không có thông tin
 Các thành phần chính bao gồm mảng hai chiều: trạng thái bắt đầu và kết thúc, và solution.
-
 Cấu trúc lưu trữ các trạng thái đã duyệt qua như queue, stack.
 
 BFS:
@@ -44,3 +43,43 @@ DFS:
 UCS:
 
 ![UCS](https://github.com/user-attachments/assets/dfb2d653-34bf-48ce-b423-bb1bdaa366f3)
+
+IDS:
+
+![IDS](https://github.com/user-attachments/assets/9a21ae2e-877c-4449-a2bc-630b2df27929)
+
+So sánh hiệu suất các thuật toán tìm kiếm không có thông tin:
+
+![image](https://github.com/user-attachments/assets/839e43ab-9c42-491f-bfea-d9802be279a4)
+
+
+Nhận xét, BFS có số trạng thái duyệt qua ít hơn và thời gian duyệt nhanh hơn 3 thuật toán còn lại.
+Cùng 1 trạng thái bắt đầu DFS mất thời gian quá dài do phải mở rộng quá nhiều trạng thái nên không đưa ra được số trạng thái đã mở rộng và thời gian hoàn thành (0,0).
+IDS có độ phức tạp về thời gian nhỏ hơn DFS và độ phức tạp về không gian nhỏ hơn BFS.
+
+### 2.2 Các thuật toán tìm kiếm có thông tin
+
+Các thành phần chính bao gồm mảng hai chiều: trạng thái bắt đầu và kết thúc, và solution.
+Các hàm để tính chi phí như hàm tính chi phí của đường đi  g(x), hàm dự đoán chi phí h(x) và hàm tổng hợp f(x) = g(x) + h(x).
+Các cấu trúc lưu trữ trạng thái đã duyệt tương tự như không có thông tin.
+
+Greedy Best-First Search:
+
+![GBFS](https://github.com/user-attachments/assets/71b58ad9-1875-4501-8186-54e1808b4b3f)
+
+A*:
+
+![Astar](https://github.com/user-attachments/assets/0dd6a455-caa7-46de-a6a9-c8695b87ca2d)
+
+IDA*:
+
+![IDA](https://github.com/user-attachments/assets/763abe43-739f-4484-ab4d-d18deae7087a)
+
+So sánh hiệu quả các thuật toán tìm kiếm có thông tin:
+
+![image](https://github.com/user-attachments/assets/1d6c45e9-ddef-4abf-b085-75429df6369f)
+
+Nhận xét: Tìm kiếm tham lam GBFS tuy có thời gian và số trạng thái duyệt qua là nhỏ nhất. Nhưng lại có số bước giải dài nhất. 
+A* có bước giải, số trạng thái duyệt qua và thời gian ngắn hơn IDA* nhưng IDA* tối ưu hơn về không gian.
+
+### 2.3 Các thuật toán tìm kiếm cục bộ.
