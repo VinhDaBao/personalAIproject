@@ -14,8 +14,15 @@ Các nhóm thuật toán dùng để giải bài toán 8 - Puzzle, mỗi nhóm �
 ### 1.2. Mục tiêu bài tập
 
 Hiểu bản chất của từng nhóm thuật toán, điểm chung, điểm mạnh, điểm yếu của từng nhóm.
+
 So sánh hiệu năng và tính phù hợp
+
 Hiểu sự khác biệt về:
+
   - Hiệu quả thời gian và bộ nhớ
   - Độ chính xác (tìm lời giải tối ưu hay không)
   - Tính khả thi với bài toán có không gian trạng thái lớn
+
+Ứng dụng vào bài toán cụ thể: 8-puzzle
+
+Áp dụng từng thuật toán để giải cùng một bài toán → so sánh kết quả.
