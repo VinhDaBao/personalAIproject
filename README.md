@@ -27,3 +27,11 @@ Hiểu sự khác biệt về:
 Củng cố kỹ năng lập trình và tư duy giải quyết vấn đề. Hiểu và hiện thực các thuật toán.
   - Thực hành cài đặt cấu trúc dữ liệu, hàng đợi, cây tìm kiếm...
   - Đánh giá khả năng mở rộng và cải tiến thuật toán.
+## 2. Nội dung
+### 2.1. Các thuật toán tìm kiếm không có thông tin
+Các thành phần chính bao gồm mảng hai chiều: trạng thái bắt đầu và kết thúc, và solution.
+
+Cấu trúc lưu trữ các trạng thái đã duyệt qua như queue, stack.
+BFS:
+
+![BFS](https://github.com/user-attachments/assets/81a9e1ed-8dc2-4ed4-87a8-b9107b4651f9)
