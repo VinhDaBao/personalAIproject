@@ -36,3 +36,11 @@ Cấu trúc lưu trữ các trạng thái đã duyệt qua như queue, stack.
 BFS:
 
 ![BFS](https://github.com/user-attachments/assets/81a9e1ed-8dc2-4ed4-87a8-b9107b4651f9)
+
+DFS:
+
+![DFS](https://github.com/user-attachments/assets/227c2b09-93f0-421e-b9bc-5cfbd435c04a)
+
+UCS:
+
+![UCS](https://github.com/user-attachments/assets/dfb2d653-34bf-48ce-b423-bb1bdaa366f3)
