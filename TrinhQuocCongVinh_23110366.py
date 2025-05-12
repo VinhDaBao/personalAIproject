@@ -12,10 +12,15 @@ from copy import deepcopy
 from collections import defaultdict
 
 
-# example_state = [
-#     [2, 6, 5],
-#     [8, 0, 7], 
-#     [4, 3, 1]
+example_state = [
+    [2, 6, 5],
+    [8, 0, 7], 
+    [4, 3, 1]
+]
+# example_state =[
+#     [1, 2, 0],
+#     [4, 5, 3],
+#     [7, 8, 6]
 # ]
 # example_state =[
 #     [1, 2, 3],
@@ -23,7 +28,7 @@ from collections import defaultdict
 #     [7, 0, 8]
 # ]
 example_state2 =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
-example_state =[[1, 2, 3], [4, 6, 0], [7, 5, 8]]
+# example_state =[[1, 2, 3], [4, 6, 0], [7, 5, 8]]
 
 
 expansion_state = 0
@@ -807,16 +812,22 @@ def ac3():
     solution = [list(reduced_domains[f"X{i}"])[0] for i in range(1, 10)]
     solution = [solution[i:i+3] for i in range(0, 9, 3)]
     return [solution]
+OPPOSITE_ACTIONS = {
+    'up': 'down',
+    'down': 'up',
+    'left': 'right',
+    'right': 'left'
+}
+Q = defaultdict(lambda: {a: 0.0 for a in ACTIONS})
 
 def Q_Learing(initial, goal):
-    global caculation_time, expansion_state
+    global caculation_time, expansion_state,Q
     start_time = time.time()
     expansion_state = 0
     alpha = 0.1     
     gamma = 0.9     
-    epsilon = 0.2   
-    episodes = 1000
-    Q = defaultdict(lambda: {a: 0.0 for a in ACTIONS})
+    epsilon = 0.2
+    episodes = 4000
 
     def possibles(state):
         i, j = np.where(np.array(state) == 0)
@@ -827,39 +838,57 @@ def Q_Learing(initial, goal):
         if j > 0: possible.append('left')
         if j < 2: possible.append('right')
         return possible
-    def reward_f(next_state):
-        return 100 if np.array_equal(np.array(next_state),np.array(goal))  else -1
-    def choose_action(state):
+    def reward_f(state, next_state,goal):
+        if np.array_equal(np.array(next_state),np.array(goal)):
+            return 100
+        d_now = manhattan_distance(state,goal)
+        d_next = manhattan_distance(next_state,goal)
+
+        if d_next < d_now:
+            return 1
+        elif d_next == d_now:
+            return -1  
+        else:
+            return -0.1
+    def choose_action(state,last = None):
+        valid = possibles(state)
+        if last:
+            valid =  [a for a in valid if a != OPPOSITE_ACTIONS.get(last)]
         if random.random() < epsilon:
-            return random.choice(possibles(state))
+            return random.choice(valid)
         else:
             q_vals = Q[tuple(map(tuple, state))]
-            actions_valid = possibles(state)
-            return max(actions_valid, key=lambda a: q_vals[a])
+            return max(valid, key=lambda a: q_vals[a] + random.uniform(0, 0.01))
     def train(start_state):
         global expansion_state
         for ep in range(episodes):
             state = start_state
+            last = None
             steps = 0
             while not np.array_equal(np.array(state),np.array(goal)) and steps < 100:
-                action = choose_action(state)
+                action = choose_action(state,last)
+                last = action
                 next_state = move(state, action)
-                reward = reward_f(next_state)
+                reward = reward_f(state,next_state,goal)
                 expansion_state+=1
                 best_next = max(Q[tuple(map(tuple, next_state))].values())
                 Q[tuple(map(tuple, state))][action] += alpha * (reward + gamma * best_next - Q[tuple(map(tuple, state))][action])
                 state = next_state
                 steps += 1
+
     def solve(start_state):
         state = start_state
         path = [state]
         steps = 0
+        last = None
         while not np.array_equal(np.array(state),np.array(goal))  and steps < 100:
-            action = choose_action(state)
+            action = choose_action(state,last)
+            last = action
+
             state = move(state, action)
             path.append(state)
             steps += 1
-        return path
+        return path if np.array_equal(np.array(path[-1]),np.array(goal)) else None
     train(initial)
     end_time = time.time()
     caculation_time = end_time - start_time
