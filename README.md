@@ -16,6 +16,6 @@ Các nhóm thuật toán dùng để giải bài toán 8 - Puzzle, mỗi nhóm �
 Hiểu bản chất của từng nhóm thuật toán, điểm chung, điểm mạnh, điểm yếu của từng nhóm.
 So sánh hiệu năng và tính phù hợp
 Hiểu sự khác biệt về:
-  -Hiệu quả thời gian và bộ nhớ
-  -Độ chính xác (tìm lời giải tối ưu hay không)
-  -Tính khả thi với bài toán có không gian trạng thái lớn
+  - Hiệu quả thời gian và bộ nhớ
+  - Độ chính xác (tìm lời giải tối ưu hay không)
+  - Tính khả thi với bài toán có không gian trạng thái lớn
