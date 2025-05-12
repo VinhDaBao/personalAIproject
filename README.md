@@ -83,3 +83,101 @@ Nhận xét: Tìm kiếm tham lam GBFS tuy có thời gian và số trạng thá
 A* có bước giải, số trạng thái duyệt qua và thời gian ngắn hơn IDA* nhưng IDA* tối ưu hơn về không gian.
 
 ### 2.3 Các thuật toán tìm kiếm cục bộ.
+
+Các thành phần chính bao gồm mảng hai chiều: trạng thái bắt đầu và kết thúc, và solution.
+
+Trạng thái tốt nhất hiện tại, các thuật toán tìm kiếm cục bộ không lưu các trạng thái đã duyệt qua mà chỉ lưu trạng thái được đánh giá là tốt nhất.
+
+Simple Hill Climbing: 
+
+![Simple](https://github.com/user-attachments/assets/d70a587a-2e86-4769-a3ee-43dc6ac3d17d)
+
+Steepest Ascent Hill Climbing:
+
+![SA](https://github.com/user-attachments/assets/40506646-49c6-4899-aa90-3b9fb08125da)
+
+Stochastic Hill Climbing:
+
+![sto](https://github.com/user-attachments/assets/f30f7244-b93d-4a8e-8531-4481677944ca)
+
+Simulated Annealing:
+
+![sti](https://github.com/user-attachments/assets/75dbd937-b70e-456e-8d8c-b32b8d868059)
+
+Beam:
+
+![Beam](https://github.com/user-attachments/assets/13b453d6-886d-4722-a6dd-047132dea5fe)
+
+Genetic Algorithms:
+
+![Gener](https://github.com/user-attachments/assets/e4c57365-e3b0-423a-b213-ada07b0198aa)
+
+So sánh hiệu quả các thuật toán tìm kiếm cục bộ:
+**Các thuật toán tìm kiếm cục bộ có sự thiếu ổn định, không đảm bảo luôn đưa ra đáp án, đôi khi cùng một trạng thái bắt đầu nhưng khi chạy vài lần lại ra kết quả nên dùng biểu đồ như 2 loại trước lại thể hiện sự so sánh tương đối và không chính xác**
+**Đôi khi lời giải giữa các lần chạy cũng không giống nhau**
+
+Nhận xét: Tìm kiếm cục bộ có ưu điểm là không gian trạng thái hữu hạn, tốc độ chạy nhanh, nhưng phụ thuộc nhiêu vào cách xử lý vấn đề như kẹt cực trị cục bộ, phẳng, đỉnh giả, lặp vô nghĩa. Nhưng cho dù là vậy vẫn tồn tại khả năng không đưa ra đáp án.
+
+### 2.4. Các thuật toán tìm kiếm trong môi trường niềm tin.
+Đặc trưng của môi trường niềm tin chính là sự không chắc chắn.
+
+And-Or Search: Không chắc chắn về kết qủa sau mỗi hành động
+
+No observation: Không chắc chắn về môi trường
+
+Partially observation: Thấy một phần của môi trường.
+
+Có không gian trạng thái bắt đầu, kết thúc, các hành động và solution.
+
+And-Or Search:
+
+![and_or](https://github.com/user-attachments/assets/886e5475-ce9a-46f5-b81b-c8a189e3753e)
+
+No observation:
+
+![Belief](https://github.com/user-attachments/assets/e8ff227b-b856-481b-8eb8-7a59978ad83f)
+
+Partially observation:
+
+![Partially](https://github.com/user-attachments/assets/0a68260e-5965-4dc7-ae2b-fc4c32dff9c7)
+
+So sánh hiệu suất thuật toán: 
+And-Or search có hiệu suất chậm hơn một chút do dùng đệ quy, rồi tới No observation, và cuối cùng là Partially Observation.
+Do No observation cần tìm lời giải có thể giải quyết tất cả trạng thái trong không gian, còn Partially chỉ mở rộng các trạng thái thoải với phần mà nó quan sát được.
+
+Nhận xét: Tìm kiếm trong môi trường niềm tin là vấn đè không quá phù hợp khi dùng để giải bài toán 8 puzzle, tuy vẫn có thể đưa ra kết quả nhưng không phải trong mọi trường hợp và không tối ưu bằng các thuật toán khác.
+
+### 2.5 Các thuật toán tìm kiếm trong môi trường ràng buộc.
+
+Khác với các nhóm thuật toán trên, thuật toán trong môi trường ràng buộc không có trạng thái bắt đầu, chỉ có đưa ra kết quả phù hợp với các ràng buộc cho trước.
+
+Kiểm thử: 
+
+![Kiemthu](https://github.com/user-attachments/assets/044bc9d2-ad0a-48c9-bd1f-e7fe2db18cba)
+
+Backtracking:
+
+![backtrack](https://github.com/user-attachments/assets/872289a6-b56b-4659-8329-028763706932)
+
+AC-3:
+
+![ac3](https://github.com/user-attachments/assets/07773d36-f4dd-4add-bd9a-63142b441efd)
+
+So sánh hiệu suất thuật toán tìm kiếm trong môi trường ràng buộc:
+Kiểm thử có hiệu xuất thấp hơn 1 chút so với AC3 do phải duyệt qua nhiều trạng thái, nhưng với những bài toán đơn giản thì kiểm thử lại tỏ ra nhanh hơn, Backtracking trung bình.
+
+Nhận xét: Tối ưu khi loại bỏ sớm các kết quả vi phạm ràng buộc. Tốn chi phí cao khi có quá nhiều ràng buộc ở các bài toán lớn.
+
+### 2.6 Thuật toán học tăng cường
+
+Có thêm một Q-table để lưu trữ các giá trị đánh giá chất lượng sau các hành động áp dụng lên 1 trạng thái.
+
+Q- Learning:
+
+![Q2](https://github.com/user-attachments/assets/019c0d4d-377b-45cb-a991-9f8a9fad57e8)
+
+So sánh hiệu suất: Tốc độ không cao do phải trải qua quá trình train. Đôi khi vẫn sẽ bị vướng kẹt đỉnh cục bộ do cách tính phần thưởng(em dùng khoảng cách manhattan nên dễ kẹt).
+
+Nhận xét: Q - Learning là thuật toán học tăng cường cơ bản, có thể đáp ứng khi giải các bài toán đơn giản, với các bài toán phức tạp hơn như không gian trạng thái lớn, hành động nhiều, yêu cầu phức tạp, yêu cầu tính tổng quát thì không nên dùng Q - Learning
+
+# 3. Kết luận.
