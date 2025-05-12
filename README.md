@@ -32,6 +32,7 @@ Củng cố kỹ năng lập trình và tư duy giải quyết vấn đề. Hi�
 Các thành phần chính bao gồm mảng hai chiều: trạng thái bắt đầu và kết thúc, và solution.
 
 Cấu trúc lưu trữ các trạng thái đã duyệt qua như queue, stack.
+
 BFS:
 
 ![BFS](https://github.com/user-attachments/assets/81a9e1ed-8dc2-4ed4-87a8-b9107b4651f9)
